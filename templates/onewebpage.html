@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Nokia homework{% endblock %}</title>
+
+    {% block exhead %}{% endblock %}
+
+</head>
+
+<body>
+    {% block content %}
+        <h1>Nokia homework</h1>
+
+        <h2>Some information from {{ data.url }}:</h2>
+
+        <p>Your IP adress is: <b>{{ data.origin }}</b></p>
+
+        <p>
+            This information was gathered using:<br>
+            <b>{{ data.headers.get('User-Agent') }}</b>
+        </p>
+        <h3>
+            BR<br>
+            Kazimierz Sroka
+        </h3>
+    {% endblock %}
+</body>
+</html>
