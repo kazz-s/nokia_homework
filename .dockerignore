@@ -1,0 +1,14 @@
+**/*.py[cod]
+
+# JetBrains IDEs
+.idea
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
