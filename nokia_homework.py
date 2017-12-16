@@ -1,6 +1,7 @@
 from flask import (
     Flask,
     render_template,
+    jsonify,
 )
 import requests
 
@@ -12,7 +13,8 @@ def index():
 
     json_response = requests.get('https://httpbin.org/get').json()
 
-    return render_template('onewebpage.html', data=json_response)
+    # return render_template('onewebpage.html', data=json_response)
+    return jsonify(json_response)
 
 
 if __name__ == '__main__':
