@@ -4,5 +4,5 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - pylint test_homework.py
+  - find . -iname "*.py" | xargs pylint
   - python test_homework.py
