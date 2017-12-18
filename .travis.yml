@@ -1,8 +1,16 @@
 language: python
 python:
   - "3.6"
+services:
+  - docker
 install:
-  - pip install -r requirements.txt
+  - docker build -t kazzs/nokiahomework .
+  - docker run -d --name nokiahomework kazzs/nokiahomework
 script:
-  - find . -iname "*.py" | xargs pylint
-  - python test_homework.py
+  - find . -iname "*.py" | xargs docker exec nokiahomework pylint
+  - docker exec nokiahomework python test_homework.py
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push kazzs/nokiahomework;
+    fi
