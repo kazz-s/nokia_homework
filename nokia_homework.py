@@ -3,8 +3,9 @@ Homework from Nokia
 """
 from flask import (
     Flask,
-    render_template,
     jsonify,
+    render_template,
+    request,
 )
 import requests
 
@@ -18,7 +19,27 @@ def index():
 
     :return: Response
     """
-    json_response = requests.get('https://httpbin.org/get').json()
+
+    json_response = requests.get('http://httpbin.org/get').json()
+
+    return jsonify(json_response)
+
+
+@APP.route('/proxy')
+def proxy():
+    """
+    Proxy
+
+    :return: Response
+    """
+    headers = dict(request.headers)
+
+    headers['Host'] = 'httpbin.org'
+
+    json_response = requests.get(
+        url='http://httpbin.org/get',
+        headers=headers,
+    ).json()
 
     return jsonify(json_response)
 
